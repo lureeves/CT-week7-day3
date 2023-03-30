@@ -6,10 +6,10 @@ console.log('This is the homework');
 // the below code works as intended
 
 function createAdder(x){
-    function times(y){
+    function add(y){
         return x + y
     };
-    return times;
+    return add;
 };
 
 
@@ -51,20 +51,30 @@ function getMovieInfo(movieName){
     })
 }
 
-function printMovieInfo(movieTitle) {
-    getMovieInfo(movieTitle)
-      .then(movie => {
-        console.log(`Movie ID: ${movie.id}`);
-        console.log(`Title: ${movie.title}`);
-        console.log(`Director: ${movie.director}`);
-        console.log(`Runtime: ${movie.runtime} minutes`);
-        console.log(`Description: ${movie.description}`);
-      })
-      .catch(error => {
-        console.warn(`Error: ${error}`);
-      });
-  }
+// function printMovieInfo(movieTitle) {
+//     getMovieInfo(movieTitle)
+//       .then(movie => {
+//         console.log(`Movie ID: ${movie.id}`);
+//         console.log(`Title: ${movie.title}`);
+//         console.log(`Director: ${movie.director}`);
+//         console.log(`Runtime: ${movie.runtime} minutes`);
+//         console.log(`Description: ${movie.description}`);
+//       })
+//       .catch(error => {
+//         console.warn(`Error: ${error}`);
+//       });
+//   };
 
+// Or
+
+async function printMovieInfo(movieName){
+    try{
+        let movie = await getMovieInfo(movieName);
+        console.log(`${movie.title} directed by ${movie.director}. A story of ${movie.description} that runs for ${movie.runtime} minutes.`)
+    } catch(error) {
+        console.warn(error);
+    };
+};
 
 // Example 1
 printMovieInfo('Indiana Jones and the Dark Knight')
